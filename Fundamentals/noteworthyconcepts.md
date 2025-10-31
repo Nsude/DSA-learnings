@@ -73,3 +73,43 @@
 
   Now, each result is stored and reused, making it far more efficient for larger inputs.
 </details>
+
+
+<!-- Fibonacci Sequence -->
+<details>
+  <summary>🎁 The Fibonacci Sequence</summary>
+
+  The fibonacci sequence is a pattern of numbers where each one is the sum of the previous 2 numbers before it `0, 1, 1, 2, 3, 5, 8, 13...`.
+
+  `IMPORTANT 💡` The actual fibonacci sequence starts from 0, but the one Programmers reference starts from 1, so `1, 1, 2, 3, 5, 8, 13...`
+
+  The formular for getting the value of a position `n` on the fibonacci sequence is:
+  `fib(n) = fib(n - 1) + fib(n - 2)`.
+
+  That can be confusing at first so let's break it down. The reason it's fib(n-1) and fib(n-2) not simply n-1 and n-2 is because we don't know the value of position n. 
+  
+  Say n is 200, so we want to get the 200th fibonacci number, we can't simply do `200-1` + `200-2`, that would be wrong. So we call fib(200-1) to get the actual value of 200-1 in the sequence, and this repeats recurssively until we get to 0.
+
+  Now to implemenent the code for this, we know that the formular `fib(n) = fib(n - 1) + fib(n - 2)` does not apply to the first two numbers so we need to include that exception.
+
+  ```
+  function fib(n) {
+    if (n < 2) return n;
+
+    return fib(n - 1) + fib(n - 2);
+  }
+  ```
+
+  With Memoization:
+  ```
+  function fib(n, memo = []) {
+    if (n < 2) return n;
+    
+    if (memo[n]) return memo[n];
+
+    memo[n] = fib(n - 1, memo) + fib(n - 2, memo);
+    return memo[n]
+  }
+  ```
+
+</details>
