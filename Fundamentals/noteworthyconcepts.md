@@ -35,13 +35,41 @@
 <details>
   <summary>🎁 Recurssion & Memoisation</summary>
 
-  Recurssion is a method of solving complex problems by creating a function that calls itself thereby breaking down the problem into smaller units until it gets to the smallest unit. The result from each operation is returned in the call stack and hoisted up to the next operation and so on, till it bubbles all the way back to the top.
+  Recurssion is a method of solving complex problems by creating a function that calls itself, breaking down the problem into smaller units until it gets to the smallest unit. The result from each operation is returned up the call stack, layer by layer, untill it bubbles all the way back to the top.
+
+  Example: Factorials with Recurssion.
+
+  We know that the formular for factorials is n! = n * (n-1)!
+
+  Also that 1! is 1 and 0! is 1 as well, so we can create a recurssive function using this formular.
 
   ```
-  /*
+  function fact(n) {
+    if (n <= 1) return 1;
+    return n * fact(n - 1);
+  }
+  ```
   
-  We have 
+  Now this works, but the memory space and time required can grow quickly for large numbers - that's where Memoization comes in.
 
-  */
+  ### Memoization 
+  Memoization means storing computed values so that future calls can reuse them instead of recalculating the same results.
+
+  In recursion, we do this by saving each computed value in an array (or object) and checking if it already exists before computing again:`.
+
+  Here's the initial code, but with memoizaiton implemented.
+
   ```
+  function fact(n, memo = []) {
+    if (n <= 1) return 1;
+
+    if (memo[n]) return memo[n];
+
+    memo[n] = n * fact(n - 1, memo);
+    return memo[n];
+  }
+
+  ```
+
+  Now, each result is stored and reused, making it far more efficient for larger inputs.
 </details>
